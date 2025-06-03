@@ -1,9 +1,9 @@
 {
-  "communicationTool": {
-    "nameOfTool": "slack",
-    "slack": {
-      "channelName": "cydig-stars",
-      "isPrivate": true
+    "communicationTool": {
+        "nameOfTool": "slack",
+        "slack": {
+            "channelName": "cydig-stars",
+            "isPrivate": true
+        }
     }
-  }
 }

@@ -1,4 +1,4 @@
 export interface SlackResponse {
-  ok: boolean;
-  error?: string;
+    ok: boolean;
+    error?: string;
 }
