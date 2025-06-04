@@ -10,7 +10,7 @@
     },
     "main": "dist/index.js",
     "scripts": {
-        "build": "ncc build src/index.ts && cp src/tests/*.json dist/tests/",
+        "build": "ncc build src/index.ts && mkdir -p dist/tests && cp src/tests/*.json dist/tests/",
         "test": "tsc && mocha dist/tests/",
         "testScript": "tsc && mocha dist/tests/ --reporter xunit --reporter-option output=ResultsFile.xml",
         "prepare": "husky install",
