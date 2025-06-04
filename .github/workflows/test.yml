@@ -38,6 +38,9 @@ jobs:
           sed -i 's|###notificationfunctionkey###|${{ secrets.NOTIFICATION_FUNCTION_KEY }}|g' src/config.json
           sed -i 's|###dashboardUrl###|${{ vars.DASHBOARD_URL }}|g' src/config.json
 
+      - name: Show config after replacement
+        run: cat src/config.json     
+
       - name: Run notification action
         uses: ./
         with:
