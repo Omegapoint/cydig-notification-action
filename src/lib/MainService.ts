@@ -14,7 +14,7 @@ export class MainService {
         const slackAccessToken: string = core.getInput('slackAccessToken', {
             required: true,
         });
-        const dashboardUrl: string = config.dashboardUrl;
+        let dashboardUrl: string = config.dashboardUrl;
 
         const cydigConfig: CyDigConfig = getContentOfFile(cydigConfigPath);
 
@@ -25,7 +25,8 @@ export class MainService {
             throw new Error('Missing slack channel name in config');
         }
         if (!dashboardUrl) {
-            throw new Error('Dashboard url missing');
+            dashboardUrl = "https://cydig.omegapoint.cloud/dashboard";
+            core.info('No dashboard URL provided, using prod: ' + dashboardUrl);
         }
 
         const notificationService: NotificationService = new NotificationService();
@@ -34,8 +35,11 @@ export class MainService {
         const complianceHistory: ComplianceHistory = await notificationService.fetchRelevantComplianceHistory(
             cydigConfig.teamName,
         );
+        core.info(`Fetched compliance history for team ${cydigConfig.teamName}: ${complianceHistory}`);
+        const shouldSendAlert: boolean = complianceHistory.shouldSendAlert();
+        core.info(`Should send slack alert: ${shouldSendAlert}`);
 
-        if (complianceHistory.shouldSendAlert()) {
+        if (shouldSendAlert) {        
             await slackService.sendToSlack(
                 complianceHistory,
                 cydigConfig.communicationTool.slack.channelName,
