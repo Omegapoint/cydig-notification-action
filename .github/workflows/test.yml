@@ -1,19 +1,8 @@
-name: Test notification action
-run-name: ${{ github.actor }} is running notification action tests
-permissions:
-  contents: read
-  pages: read
-  id-token: write
-
-on:
-  workflow_dispatch:
-  pull_request:
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout notification action
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup node
@@ -22,11 +11,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Replace placeholders in config
+        run: |
+          sed -i 's|###urlnotification###|${{ vars.URL_NOTIFICATION }}|g' src/config.json
+          sed -i 's|###notificationfunctionkey###|${{ secrets.NOTIFICATION_FUNCTION_KEY }}|g' src/config.json
+          sed -i 's|###dashboardUrl###|${{ vars.DASHBOARD_URL }}|g' src/config.json
+
       - name: Build action
         run: npm run build
-      # TODO: fix prettier errors
-      #- name: Run lint and prettier
-      #  run: npm run lint && npm run format:check
 
       - name: Run tests
         run: npm test
@@ -34,8 +26,5 @@ jobs:
       - name: Run notification action
         uses: ./
         with:
-          # Do we need to add below?
-          # PAT-token: ${{ secrets.MY_GITHUB_PAT}}
-          # accessTokenAzureDevOps: ${{ secrets.DEVOPS_TOKEN_WORK_ITEMS }}
-          cydigConfigPath: ${{ github.workspace }}/src/cydigConfig.json
+          cydigConfigPath: ${{ github.workspace }}/src/config.json
           slackAccessToken: ${{ secrets.SLACK_TOKEN }}
