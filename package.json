@@ -1,7 +1,7 @@
 {
-    "name": "cydig-notification-task",
+    "name": "cydig-notification-action",
     "version": "1.0.0",
-    "description": "Task for sending compliance notifications",
+    "description": "Action for sending compliance notifications",
     "exports": {
         ".": "./dist/index.js"
     },
