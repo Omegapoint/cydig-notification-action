@@ -1,11 +1,11 @@
 {
-  "teamName": "CyDig",
-  "communicationTool": {
-    "nameOfTool": "slack",
-    "slack": {
-      "channelName": "cydig-stars",
-      "isPrivate": true
-    }
-  },
-  "dashboardUrl": "testurl"
+    "teamName": "CyDig",
+    "communicationTool": {
+        "nameOfTool": "slack",
+        "slack": {
+            "channelName": "cydig-stars",
+            "isPrivate": true
+        }
+    },
+    "dashboardUrl": "testurl"
 }

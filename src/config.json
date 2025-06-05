@@ -1,5 +1,5 @@
 {
-  "urlNotification": "###urlnotification###",
-  "notificationFunctionKey": "###notificationfunctionkey###",
-  "dashboardUrl": "###dashboardUrl###"
+    "urlNotification": "###urlnotification###",
+    "notificationFunctionKey": "###notificationfunctionkey###",
+    "dashboardUrl": "###dashboardUrl###"
 }

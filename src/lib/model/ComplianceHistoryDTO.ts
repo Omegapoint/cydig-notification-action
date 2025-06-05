@@ -1,11 +1,11 @@
 export default interface ComplianceHistoryDTO {
-  teamName: string;
-  currentCompliance: ComplianceScoreDTO;
-  previousCompliance: ComplianceScoreDTO;
+    teamName: string;
+    currentCompliance: ComplianceScoreDTO;
+    previousCompliance: ComplianceScoreDTO;
 }
 
 interface ComplianceScoreDTO {
-  date: string;
-  score: number;
-  maxScore: number;
+    date: string;
+    score: number;
+    maxScore: number;
 }

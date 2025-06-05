@@ -16,6 +16,7 @@ lib-cov
 *.pid
 *.gz
 *.swp
+.secrets
 
 pids
 logs
