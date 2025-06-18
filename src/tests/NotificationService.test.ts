@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import axios from 'axios';
-import config from '../config.json';
 import { NotificationService } from '../lib/NotificationService';
 import ComplianceHistoryDTO from '../lib/model/ComplianceHistoryDTO';
 import { ComplianceHistory } from '../lib/model/ComplianceHistory';
@@ -37,7 +36,7 @@ describe('NotifcationService', () => {
 
         expect(axiosGetStub.calledOnce).to.be.true;
         expect(axiosGetStub.firstCall.args[0].startsWith(
-            `${config.urlNotification}/api/teams/Cydig/history?code=`
+            `https://func-cydig-notification-service-prod.azurewebsites.net/api/teams/Cydig/history?code=`
         )).to.be.true;
         expect(result).to.deep.equal(expected);
     });
