@@ -34,7 +34,6 @@ describe('NotifcationService', () => {
         const service = new NotificationService();
         const result = await service.fetchRelevantComplianceHistory('Cydig');
 
-        console.log(axiosGetStub.firstCall.args[0])
         expect(axiosGetStub.calledOnce).to.be.true;
         expect(axiosGetStub.firstCall.args[0].startsWith(
             `${process.env.urlNotification}/api/teams/Cydig/history?code=`
