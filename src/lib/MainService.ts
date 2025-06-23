@@ -26,8 +26,9 @@ export class MainService {
         let dashboardUrl: string;
         if (!process.env?.dashboardUrl) {
             dashboardUrl = "https://cydig.omegapoint.cloud/dashboard";
+        } else {
+            dashboardUrl = process.env.dashboardUrl;
         }
-        dashboardUrl = process.env.dashboardUrl as string;
 
         const notificationService: NotificationService = new NotificationService();
         const slackService: SlackService = new SlackService(slackAccessToken);

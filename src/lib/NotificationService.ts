@@ -1,15 +1,15 @@
 import axios from 'axios';
 import ComplianceHistoryDTO from './model/ComplianceHistoryDTO';
 import { ComplianceHistory } from './model/ComplianceHistory';
-import * as core from '@actions/core';
 
 export class NotificationService {
     public async fetchRelevantComplianceHistory(teamName: string): Promise<ComplianceHistory> {
         let urlNotification: string;
         if (!process.env?.urlNotification) {
             urlNotification = "https://func-cydig-notification-service-prod.azurewebsites.net";
+        } else {
+            urlNotification = process.env.urlNotification;
         }
-        urlNotification = process.env.urlNotification as string;
 
         if (!process.env?.updateKey) {
             throw new Error('Could not find environment variable updateKey');
