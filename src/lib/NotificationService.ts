@@ -1,26 +1,20 @@
 import axios from 'axios';
-import config from '../config.json';
 import ComplianceHistoryDTO from './model/ComplianceHistoryDTO';
 import { ComplianceHistory } from './model/ComplianceHistory';
 import * as core from '@actions/core';
 
 export class NotificationService {
     public async fetchRelevantComplianceHistory(teamName: string): Promise<ComplianceHistory> {
-        let urlNotification: string = config.urlNotification;
-        let notificationFunctionKey: string = config.notificationFunctionKey;
-        
-        if (!notificationFunctionKey) {
-            if (!process.env.updateKey) {
-                throw new Error('Notification function key is not configured in environment variable "updateKey".');
-            }
-            notificationFunctionKey = process.env.updateKey; 
-            core.info('Using function key from environment variable "updateKey".');
+        let urlNotification: string;
+        if (!process.env?.urlNotification) {
+            urlNotification = "https://func-cydig-notification-service-prod.azurewebsites.net";
         }
+        urlNotification = process.env.urlNotification as string;
 
-        if (!urlNotification) {
-            urlNotification = "https://func-cydig-notification-service-prod.azurewebsites.net"
-            core.info('Using prod notification URL ' + urlNotification);
-        }   
+        if (!process.env?.updateKey) {
+            throw new Error('Could not find environment variable updateKey');
+        }
+        const notificationFunctionKey: string = process.env.updateKey;
 
         const urlComplianceHistory: string = `${urlNotification}/api/teams/${teamName}/history?code=${notificationFunctionKey}`;
         return fetchData(urlComplianceHistory)
