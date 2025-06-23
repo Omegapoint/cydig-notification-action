@@ -1,3 +1,0 @@
-# CyDig Notification Task
-
-TODO
