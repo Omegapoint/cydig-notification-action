@@ -49,7 +49,7 @@ describe('SlackService', () => {
                     type: 'section',
                     text: {
                         type: 'mrkdwn',
-                        text: ':warning: *Score dropped by* *20.00 %* :arrow_down_small:\n\n:red_circle: Please investigate the cause of the decrease:\n\ntesturl?team=CyDig',
+                        text: ':warning: *Score dropped by* *20.00 %* :arrow_down_small:\n\nPlease investigate the cause of the decrease:\n\ntesturl?team=CyDig',
                     },
                 },
             ],
