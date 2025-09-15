@@ -27,7 +27,7 @@
         "@actions/github": "^6.0.0",
         "@azure/identity": "^4.5.0",
         "@vercel/ncc": "^0.38.3",
-        "axios": "^1.8.2"
+        "axios": "^1.12.2"
     },
     "devDependencies": {
         "@types/chai": "^5.0.1",
