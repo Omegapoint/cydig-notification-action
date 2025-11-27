@@ -6,7 +6,7 @@ export class NotificationService {
     public async fetchRelevantComplianceHistory(teamName: string): Promise<ComplianceHistory> {
         let urlNotification: string;
         if (!process.env?.urlNotification) {
-            urlNotification = "https://func-cydig-notification-service-prod.azurewebsites.net";
+            urlNotification = 'https://func-cydig-notification-service-prod.azurewebsites.net';
         } else {
             urlNotification = process.env.urlNotification;
         }

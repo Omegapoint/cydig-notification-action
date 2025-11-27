@@ -2,3 +2,4 @@ node_modules
 js_out
 dist
 README.md
+src/tests/CyDigConfigMalformed.json
