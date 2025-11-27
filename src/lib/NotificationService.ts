@@ -21,7 +21,7 @@ export class NotificationService {
             .then((body) => {
                 return new ComplianceHistory(body.teamName, body.currentCompliance, body.previousCompliance);
             })
-            .catch((error: any) => {
+            .catch((error) => {
                 throw new Error(`Request failed with status code: ${error.response.status}. ${error.response.data}`);
             });
     }

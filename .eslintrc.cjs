@@ -4,7 +4,7 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     plugins: ['@typescript-eslint'],
     root: true,
-    ignorePatterns: ['node_modules', 'test', 'dist', 'func'],
+    ignorePatterns: ['node_modules', 'tests', 'dist', 'func'],
     rules: {
         '@typescript-eslint/explicit-function-return-type': 'warn',
         '@typescript-eslint/no-inferrable-types': 0,
