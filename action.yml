@@ -1,16 +1,16 @@
-name: "CyDig Notification"
-description: "CyDig notification task"
-author: "Omegapoint"
+name: 'CyDig Notification'
+description: 'CyDig notification task'
+author: 'Omegapoint'
 inputs:
-  cydigConfigPath:
-    description: "The path to the json-file containing configuration for CyDig"
-    required: true
-  slackAccessToken:
-    description: "Token for Slack app that send notifications to slack channel"
-    required: true
+    cydigConfigPath:
+        description: 'The path to the json-file containing configuration for CyDig'
+        required: true
+    slackAccessToken:
+        description: 'Token for Slack app that send notifications to slack channel'
+        required: true
 runs:
-  using: "node20"
-  main: "dist/index.js"
+    using: 'node20'
+    main: 'dist/index.js'
 branding:
-  icon: "bell"
-  color: "blue"
+    icon: 'bell'
+    color: 'blue'
