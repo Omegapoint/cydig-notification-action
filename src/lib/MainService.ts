@@ -25,7 +25,7 @@ export class MainService {
 
         let dashboardUrl: string;
         if (!process.env?.dashboardUrl) {
-            dashboardUrl = "https://cydig.omegapoint.cloud/dashboard";
+            dashboardUrl = 'https://cydig.omegapoint.cloud/dashboard';
         } else {
             dashboardUrl = process.env.dashboardUrl;
         }
