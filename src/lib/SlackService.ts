@@ -57,6 +57,7 @@ function createSlackMessage(
                 text: {
                     type: 'mrkdwn',
                     text: `:warning: *Score dropped by* *${complianceHistory.percentageDrop().toFixed(2)} %* :arrow_down_small:\n\nPlease investigate the cause of the decrease:\n\n${dashboardUrl}?team=${encodeURIComponent(teamName)}`,
+                },
             },
         ],
     };
