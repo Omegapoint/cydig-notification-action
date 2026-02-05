@@ -37,8 +37,8 @@ jobs:
             - name: Run tests
               run: npm test
 
-            # - name: Run notification action
-            #   uses: ./
-            #   with:
-            #       cydigConfigPath: ${{ github.workspace }}/src/cydigConfig.json
-            #       slackAccessToken: ${{ secrets.SLACK_TOKEN }}
+            - name: Run notification action
+              uses: ./
+              with:
+                  cydigConfigPath: ${{ github.workspace }}/src/cydigConfig.json
+                  slackAccessToken: ${{ secrets.SLACK_TOKEN }}
