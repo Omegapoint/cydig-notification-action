@@ -7,7 +7,7 @@ import tseslint from 'typescript-eslint';
 export default defineConfig([
     eslint.configs.recommended,
     tseslint.configs.recommended,
-    { ignores: ['node_modules', 'src/tests', 'dist', 'func', 'rollup.config.mjs'] },
+    { ignores: ['node_modules', 'tests', 'dist', 'func', 'rollup.config.mjs'] },
     {
         rules: {
             '@typescript-eslint/explicit-function-return-type': 'warn',
