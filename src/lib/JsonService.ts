@@ -13,6 +13,14 @@ export function getContentOfFile(jsonPath: string): CyDigConfig {
         });
         return JSON.parse(fileContent);
     } catch (error) {
-        throw new Error('Got the following error when trying to read config file:' + error.name);
+        if (error instanceof Error) {
+            throw new Error('Got the following error when trying to read config file:' + error.name, {
+                cause: error,
+            });
+        }
+
+        throw new Error('Got the following error when trying to read config file:Unknown', {
+            cause: error,
+        });
     }
 }

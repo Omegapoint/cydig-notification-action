@@ -3,7 +3,7 @@
     "compilerOptions": {
         "target": "ES2022",
         "module": "nodenext",
-        "rootDir": "./src",
+        "rootDir": "./",
         "moduleResolution": "nodenext",
         "baseUrl": "./",
         "sourceMap": true,
@@ -13,8 +13,8 @@
         "forceConsistentCasingInFileNames": true,
         "skipLibCheck": true,
         "newLine": "lf",
-        "resolveJsonModule": true
+        "strict": true,
+        "useUnknownInCatchVariables": false
     },
-    "include": ["src/**/*.ts"],
-    "exclude": ["dist", "node_modules"]
+    "exclude": ["./dist", "./node_modules"]
 }

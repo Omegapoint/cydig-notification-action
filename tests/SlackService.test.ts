@@ -1,7 +1,20 @@
 import sinon from 'sinon';
 import axios from 'axios';
-import { SlackService } from '../lib/SlackService';
-import { ComplianceHistory } from '../lib/model/ComplianceHistory';
+import mockRequire from 'mock-require';
+
+const core = {
+    warning: (): void => undefined,
+    notice: (): void => undefined,
+    info: (): void => undefined,
+    exportVariable: (): void => undefined,
+};
+
+mockRequire('@actions/core', core);
+
+const { SlackService } = require('../src/lib/SlackService');
+const { ComplianceHistory } = require('../src/lib/model/ComplianceHistory');
+type ComplianceHistoryType = typeof ComplianceHistory;
+type SlackServiceType = typeof SlackService;
 
 describe('SlackService', () => {
     let axiosMock: sinon.SinonStub;
@@ -15,7 +28,7 @@ describe('SlackService', () => {
     });
 
     it('should post message to slack', async () => {
-        const complianceHistory: ComplianceHistory = new ComplianceHistory(
+        const complianceHistory: ComplianceHistoryType = new ComplianceHistory(
             'CyDig',
             { date: '2025-05-08', score: 70, maxScore: 100 },
             { date: '2025-05-07', score: 90, maxScore: 100 },
@@ -24,7 +37,7 @@ describe('SlackService', () => {
         const channelName = 'testChannel';
         const accessToken = 'TestAccessToken';
         const dashboardUrl = 'testurl';
-        const slackService: SlackService = new SlackService(accessToken);
+        const slackService: SlackServiceType = new SlackService(accessToken);
 
         const requestBody = {
             channel: channelName,
