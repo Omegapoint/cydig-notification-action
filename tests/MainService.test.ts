@@ -1,15 +1,26 @@
 import sinon from 'sinon';
-import * as core from '@actions/core';
-import { MainService } from '../lib/MainService';
-import { SlackService } from '../lib/SlackService';
-import { NotificationService } from '../lib/NotificationService';
+import mockRequire from 'mock-require';
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import { ComplianceHistory } from '../lib/model/ComplianceHistory';
 import path from 'path';
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
+
+const core = {
+    warning: (): void => undefined,
+    notice: (): void => undefined,
+    info: (): void => undefined,
+    exportVariable: (): void => undefined,
+    getInput: (): void => undefined,
+};
+
+mockRequire('@actions/core', core);
+
+const { ComplianceHistory } = require('../src/lib/model/ComplianceHistory');
+const { MainService } = require('../src/lib/MainService');
+const { SlackService } = require('../src/lib/SlackService');
+const { NotificationService } = require('../src/lib/NotificationService');
 
 describe('MainService', () => {
     let getInputMock: sinon.SinonStub;
@@ -27,7 +38,7 @@ describe('MainService', () => {
     });
 
     it('should call fetch compliance history and send to slack', async () => {
-        const historyCompliance: ComplianceHistory = new ComplianceHistory(
+        const historyCompliance: typeof ComplianceHistory = new ComplianceHistory(
             'CyDig',
             { date: '2025-05-07', score: 70, maxScore: 100 },
             { date: '2025-05-07', score: 90, maxScore: 100 },
@@ -35,7 +46,7 @@ describe('MainService', () => {
 
         getInputMock
             .withArgs('cydigConfigPath', sinon.match.any)
-            .returns(path.join(__dirname, 'CyDigConfigValid.json'));
+            .returns(path.join(__dirname, '../../tests/CyDigConfigValid.json'));
         getInputMock.withArgs('slackAccessToken', sinon.match.any).returns('dummyToken');
         fetchComplianceHistoryMock.resolves(historyCompliance);
         sendSlackMessageMock.resolves();
@@ -47,7 +58,7 @@ describe('MainService', () => {
     });
 
     it('should not send slack message when scores are equal', async () => {
-        const historyCompliance: ComplianceHistory = new ComplianceHistory(
+        const historyCompliance: typeof ComplianceHistory = new ComplianceHistory(
             'CyDig',
             { date: '2025-05-07', score: 90, maxScore: 100 },
             { date: '2025-05-07', score: 90, maxScore: 100 },
@@ -55,7 +66,7 @@ describe('MainService', () => {
 
         getInputMock
             .withArgs('cydigConfigPath', sinon.match.any)
-            .returns(path.join(__dirname, 'CyDigConfigValid.json'));
+            .returns(path.join(__dirname, '../../tests/CyDigConfigValid.json'));
 
         getInputMock.withArgs('slackAccessToken', sinon.match.any).returns('dummyToken');
         fetchComplianceHistoryMock.resolves(historyCompliance);
@@ -70,7 +81,7 @@ describe('MainService', () => {
     it('should return false when team name is missing', async () => {
         getInputMock
             .withArgs('cydigConfigPath', sinon.match.any)
-            .returns(path.join(__dirname, 'CyDigConfigTeamNameMissing.json'));
+            .returns(path.join(__dirname, '../../tests/CyDigConfigTeamNameMissing.json'));
 
         getInputMock.withArgs('slackAccessToken', sinon.match.any).returns('dummyToken');
 
@@ -83,7 +94,7 @@ describe('MainService', () => {
     it('should return false when channel name is missing', async () => {
         getInputMock
             .withArgs('cydigConfigPath', sinon.match.any)
-            .returns(path.join(__dirname, 'CyDigConfigChannelNameMissing.json'));
+            .returns(path.join(__dirname, '../../tests/CyDigConfigChannelNameMissing.json'));
 
         getInputMock.withArgs('slackAccessToken', sinon.match.any).returns('dummyToken');
 
@@ -96,7 +107,7 @@ describe('MainService', () => {
     it('should handle malformed config file', async () => {
         getInputMock
             .withArgs('cydigConfigPath', sinon.match.any)
-            .returns(path.join(__dirname, 'CyDigConfigMalformed.json'));
+            .returns(path.join(__dirname, '../../tests/CyDigConfigMalformed.json'));
         getInputMock.withArgs('slackAccessToken', sinon.match.any).returns('dummyToken');
 
         await expect(new MainService().run()).to.be.rejectedWith(
