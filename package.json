@@ -37,7 +37,7 @@
         "@types/chai-as-promised": "^8.0.2",
         "@types/mock-require": "^3.0.0",
         "@types/mocha": "^10.0.10",
-        "@types/node": "^25.3.5",
+        "@types/node": "^25.5.0",
         "@types/sinon": "^21.0.0",
         "@types/sinon-chai": "^4.0.0",
         "chai": "6.2.2",
