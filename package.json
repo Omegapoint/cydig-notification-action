@@ -42,16 +42,16 @@
         "@types/sinon-chai": "^4.0.0",
         "chai": "6.2.2",
         "chai-as-promised": "^8.0.1",
-        "eslint": "^10.0.3",
+        "eslint": "^10.1.0",
         "husky": "^9.1.7",
         "mock-require": "^3.0.3",
         "mocha": "^11.5.0",
         "prettier": "^3.8.1",
         "rollup": "^4.0.0",
-        "sinon": "^21.0.2",
+        "sinon": "^21.0.3",
         "sinon-chai": "^4.0.1",
         "ts-node": "^10.9.2",
         "typescript": "^5.9.3",
-        "typescript-eslint": "^8.54.0"
+        "typescript-eslint": "^8.57.1"
     }
 }
