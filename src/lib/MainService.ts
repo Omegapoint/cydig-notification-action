@@ -37,7 +37,7 @@ export class MainService {
         const complianceHistory: ComplianceHistory = await notificationService.fetchRelevantComplianceHistory(
             cydigConfig.teamName,
         );
-        core.info(`Fetched compliance history for team ${cydigConfig.teamName}: ${complianceHistory}`);
+        core.info(`Fetched compliance history for team ${cydigConfig.teamName}: ${complianceHistory.toString()}`);
         const shouldSendAlert: boolean = complianceHistory.shouldSendAlert();
         core.info(`Should send slack alert: ${shouldSendAlert}`);
 
