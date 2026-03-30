@@ -7,6 +7,7 @@ import * as core from '@actions/core';
 
 export class MainService {
     public async run(): Promise<void> {
+        core.info('Starting CyDig notification action');
         const cydigConfigPath: string = core.getInput('cydigConfigPath', {
             required: true,
         });
